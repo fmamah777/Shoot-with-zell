@@ -65,6 +65,24 @@ input[type=file]::file-selector-button{background:var(--ink);color:var(--bg);bor
 .err{color:#ff6b6b;font-size:12px;margin-top:6px;display:none}.err.on{display:block}
 pre{white-space:pre-wrap;background:var(--bg);border:1px solid var(--line);padding:12px;font:12px/1.5 var(--mono);overflow-x:auto;margin:0 0 6px}
 .chk{display:flex;gap:10px;align-items:flex-start}.chk input{margin-top:4px;accent-color:var(--red)}
+.cal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.cal-head b{font:700 22px/1 var(--head)}
+.cal-nav{background:none;border:1px solid var(--line);color:var(--ink);width:36px;height:36px;cursor:pointer;font:inherit;font-size:16px}
+.cal-nav:disabled{opacity:.3;cursor:default}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.cal-dow{font-size:10px;letter-spacing:.12em;color:var(--mute);text-align:center;text-transform:uppercase;padding:4px 0}
+.cal-day{aspect-ratio:1;min-height:38px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font:inherit;font-size:13px;cursor:pointer;padding:0}
+.cal-day.we{background:#1d1515;border-color:#3d2626}
+.cal-day.sel{background:var(--red);border-color:var(--red);color:#fff}
+.cal-day:disabled{opacity:.22;cursor:default}
+.cal-day:focus-visible,.slot:focus-visible,.cal-nav:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.cal-day.blank{visibility:hidden;border:0}
+.cal-key{display:flex;gap:16px;flex-wrap:wrap;font-size:11px;color:var(--mute);margin-top:10px}
+.cal-key i{display:inline-block;width:10px;height:10px;margin-right:6px;border:1px solid var(--line);background:var(--bg);vertical-align:-1px}
+.cal-key i.we{background:#1d1515;border-color:#3d2626}
+.slots{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.slot{padding:9px 12px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font:inherit;font-size:13px;cursor:pointer}
+.slot.sel{background:var(--red);border-color:var(--red);color:#fff}
 .foot{margin-top:40px;font-size:10px;letter-spacing:.25em;color:#555;text-transform:uppercase}
 </style>
 </head>
@@ -102,7 +120,7 @@ pre{white-space:pre-wrap;background:var(--bg);border:1px solid var(--line);paddi
 <h2>Tell Me the Vibe</h2>
 <p class="lede" style="margin-bottom:22px">Answer what you can. I'll fill in the rest.</p>
 
-<div class="notice"><strong>Pricing note:</strong> additional charges apply for add-ons or anything that takes extra work:
+<div class="notice"><strong>Additional charges may apply:</strong>
 <ul><li>Driving beyond city limits</li><li>Multiple outfits</li><li>Additional people joining the shoot</li><li>Multiple locations</li></ul></div>
 
 <form id="f" novalidate>
@@ -151,6 +169,13 @@ pre{white-space:pre-wrap;background:var(--bg);border:1px solid var(--line);paddi
 <div class="thumbs" id="thumbs"></div>
 <div class="err" id="e-files">Please add at least 1 inspiration photo (max 3).</div></div>
 
+<div class="card"><div class="q">Pick a date &amp; time <span class="req">*</span> <span class="hint">Weekends are open all day. Weekdays are available after 7 PM.</span></div>
+<div class="cal-head"><button type="button" class="cal-nav" id="calPrev" aria-label="Previous month">&larr;</button><b id="calTitle"></b><button type="button" class="cal-nav" id="calNext" aria-label="Next month">&rarr;</button></div>
+<div class="cal-grid" id="calGrid"></div>
+<div class="cal-key"><span><i class="we"></i>Weekend: open all day</span><span><i></i>Weekday: after 7 PM</span></div>
+<div id="slotWrap" class="hide" style="margin-top:14px"><div class="q" id="slotLabel" style="margin-bottom:0"></div><div class="slots" id="slots"></div></div>
+<div class="err" id="e-date">Please pick a date and a time.</div></div>
+
 <div class="card"><label class="q" for="notes">Anything else? <span class="hint">(preferred dates, occasion, Instagram handle)</span></label>
 <textarea id="notes"></textarea></div>
 
@@ -192,20 +217,70 @@ function draw(){
     d.appendChild(im);d.appendChild(b);t.appendChild(d);
   });
 }
+var MN=["January","February","March","April","May","June","July","August","September","October","November","December"];
+var DN=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+var now=new Date(),today=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+var calY=today.getFullYear(),calM=today.getMonth(),selDate=null,selTime="";
+function tl(h,m){var ap=h>=12?"PM":"AM",hh=h%12||12;return hh+":"+(m<10?"0":"")+m+" "+ap}
+function slotList(d){
+  var out=[],wk=d.getDay()===0||d.getDay()===6,h;
+  if(wk){for(h=7;h<=21;h++)out.push(tl(h,0))}
+  else{for(h=19;h<=21;h++){out.push(tl(h,0));if(h<21)out.push(tl(h,30))}}
+  return out;
+}
+function dtText(){return selDate?DN[selDate.getDay()]+", "+MN[selDate.getMonth()]+" "+selDate.getDate()+", "+selDate.getFullYear()+" at "+selTime:"Not chosen"}
+function drawSlots(){
+  var w=$("slotWrap");
+  if(!selDate){w.classList.add("hide");return}
+  var list=slotList(selDate),wk=selDate.getDay()===0||selDate.getDay()===6;
+  if(list.indexOf(selTime)<0)selTime="";
+  $("slotLabel").textContent=DN[selDate.getDay()]+", "+MN[selDate.getMonth()]+" "+selDate.getDate()+(wk?": open all day":": available after 7 PM");
+  var c=$("slots");c.innerHTML="";
+  list.forEach(function(t){
+    var b=document.createElement("button");b.type="button";b.className="slot"+(t===selTime?" sel":"");b.textContent=t;
+    b.setAttribute("aria-pressed",t===selTime?"true":"false");
+    b.onclick=function(){selTime=t;$("e-date").classList.remove("on");drawSlots()};
+    c.appendChild(b);
+  });
+  w.classList.remove("hide");
+}
+function drawCal(){
+  $("calTitle").textContent=MN[calM]+" "+calY;
+  var g=$("calGrid");g.innerHTML="";
+  DN.forEach(function(n){var d=document.createElement("div");d.className="cal-dow";d.textContent=n;g.appendChild(d)});
+  var first=new Date(calY,calM,1).getDay(),days=new Date(calY,calM+1,0).getDate(),i;
+  for(i=0;i<first;i++){var e=document.createElement("button");e.type="button";e.className="cal-day blank";e.disabled=true;e.tabIndex=-1;e.setAttribute("aria-hidden","true");g.appendChild(e)}
+  for(i=1;i<=days;i++){(function(day){
+    var dt=new Date(calY,calM,day),b=document.createElement("button");
+    b.type="button";b.textContent=day;
+    var wk=dt.getDay()===0||dt.getDay()===6;
+    b.className="cal-day"+(wk?" we":"")+(selDate&&dt.getTime()===selDate.getTime()?" sel":"");
+    b.disabled=dt<today;
+    b.setAttribute("aria-label",DN[dt.getDay()]+" "+MN[calM]+" "+day+(wk?", open all day":", after 7 PM"));
+    b.onclick=function(){selDate=dt;$("e-date").classList.remove("on");drawCal();drawSlots()};
+    g.appendChild(b);
+  })(i)}
+  $("calPrev").disabled=(calY===today.getFullYear()&&calM===today.getMonth());
+  var lim=new Date(today.getFullYear(),today.getMonth()+6,1);
+  $("calNext").disabled=new Date(calY,calM+1,1)>=lim;
+}
+$("calPrev").onclick=function(){calM--;if(calM<0){calM=11;calY--}drawCal()};
+$("calNext").onclick=function(){calM++;if(calM>11){calM=0;calY++}drawCal()};
+drawCal();
 function bad(id,on){$("e-"+id).classList.toggle("on",on);return on}
 function build(){
   var g=val("group")==="Multiple people"?"Multiple people ("+($("groupN").value||"?")+" total)":"Solo";
   var l=val("loc");if(l!=="I'd like you to pick a location"&&$("locD").value.trim())l+=": "+$("locD").value.trim();
   var s="PHOTOSHOOT REQUEST\nName: "+$("name").value.trim()+"\nContact: "+$("contact").value.trim()+
   "\nTime of day: "+val("time")+"\nShoot type: "+g+"\nLocation: "+l+"\nOutfits: "+val("outfits")+
-  "\nInspo photos: "+files.length+" attached";
+  "\nPreferred date/time: "+dtText()+"\nInspo photos: "+files.length+" attached";
   if($("notes").value.trim())s+="\nNotes: "+$("notes").value.trim();
   return s+"\nAcknowledged additional charges: Yes";
 }
 $("f").onsubmit=function(e){
   e.preventDefault();
   var errs=[bad("name",!$("name").value.trim()),bad("contact",!$("contact").value.trim()),bad("time",!val("time")),
-  bad("group",!val("group")),bad("loc",!val("loc")),bad("outfits",!val("outfits")),bad("files",files.length<1),bad("ack",!$("ack").checked)];
+  bad("group",!val("group")),bad("loc",!val("loc")),bad("outfits",!val("outfits")),bad("date",!(selDate&&selTime)),bad("files",files.length<1),bad("ack",!$("ack").checked)];
   if(errs.some(Boolean)){var f=document.querySelector(".err.on");f&&f.scrollIntoView({block:"center"});return}
   var m=build();$("msg").textContent=m;$("out").classList.remove("hide");
   $("sms").href="sms:"+PHONE+"?&body="+encodeURIComponent(m);
