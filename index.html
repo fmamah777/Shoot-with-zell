@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<title>Book a Photoshoot</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Grenze+Gotisch:wght@400..800&family=Cormorant+Garamond:ital,wght@0,500;1,400;1,500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#121212;--card:#181818;--ink:#ece9e3;--mute:#8f8b84;--line:#2a2a2a;--red:#e01b1b;
+--head:"Grenze Gotisch","Old English Text MT","Blackadder ITC",Georgia,serif;--serif:"Cormorant Garamond",Georgia,serif;--mono:"DM Mono",ui-monospace,Menlo,monospace;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px);background:var(--bg)}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.6 var(--mono);position:relative;min-height:100vh}
+body::before{content:"";position:fixed;top:-50%;left:-50%;width:200%;height:200%;pointer-events:none;opacity:.5;z-index:2;animation:grain .8s steps(7) infinite;
+background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .38 0'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)'/%3E%3C/svg%3E")}
+@keyframes grain{0%{transform:translate(0,0)}14%{transform:translate(-7%,5%)}28%{transform:translate(4%,-9%)}42%{transform:translate(-10%,-3%)}57%{transform:translate(8%,7%)}71%{transform:translate(-4%,10%)}85%{transform:translate(9%,-6%)}100%{transform:translate(0,0)}}
+@media (prefers-reduced-motion:reduce){body::before{animation:none}}
+body::after{content:"";position:fixed;left:0;top:0;bottom:0;width:6px;background:var(--red);z-index:3}
+main{position:relative;z-index:1;max-width:680px;margin:0 auto;padding:28px 22px 56px 28px}
+.top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:56px}
+.brand{font:700 32px/1 var(--head);letter-spacing:.02em}.brand i{color:var(--red);font-style:normal}
+.meta{font-size:10px;letter-spacing:.2em;color:var(--mute);text-align:right;text-transform:uppercase;line-height:1.5}
+.kick{font-size:10px;letter-spacing:.35em;color:var(--red);text-transform:uppercase;margin:0 0 10px}
+h1{font:700 clamp(54px,15vw,86px)/1.02 var(--head);margin:0 0 14px}
+h2{font:700 clamp(36px,10vw,50px)/1.05 var(--head);margin:0 0 8px}
+.lede{font:italic 400 clamp(20px,5vw,25px)/1.3 var(--serif);color:#d8d4cc;margin:0 0 34px;max-width:30ch}
+.steps{margin:0 0 28px;padding:0;list-style:none}
+.steps li{display:flex;gap:16px;margin-bottom:14px;color:#c9c5bd}
+.steps b{font:700 28px/1 var(--head);color:var(--red);min-width:28px}
+.steps strong{color:var(--ink);font-weight:500}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line);margin-bottom:18px}
+.grid div{padding:12px 12px;border-right:1px solid var(--line)}.grid div:last-child{border:0}
+.grid small{display:block;font-size:9px;letter-spacing:.25em;color:var(--red);text-transform:uppercase;margin-bottom:4px}
+.grid span{font:700 24px/1 var(--head)}
+.dash{border:1px dashed #3a3a3a;padding:14px;text-align:center;font-size:12px;color:var(--mute);margin-bottom:26px}
+.dash b{display:block;font:700 24px/1.1 var(--head);color:var(--ink);margin-bottom:4px}.dash b em{color:var(--red);font-style:normal}
+.btn{display:block;width:100%;padding:17px;border:0;background:var(--red);color:#fff;font:700 28px/1 var(--head);letter-spacing:.03em;cursor:pointer;text-align:center;text-decoration:none}
+.btn:hover{filter:brightness(1.1)}.btn:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+.btn.alt{background:transparent;color:var(--ink);border:1px solid var(--line);font-size:22px;padding:13px;margin-top:10px}
+.back{background:none;border:0;color:var(--mute);font:inherit;font-size:11px;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;padding:0;margin-bottom:22px}
+.hide{display:none!important}
+.card{background:var(--card);border:1px solid var(--line);padding:16px;margin-bottom:12px}
+.q{display:block;font-weight:500;margin-bottom:10px;color:var(--ink)}
+.req{color:var(--red)}.hint{color:var(--mute);font-weight:400;font-size:12px}
+input[type=text],input[type=number],textarea{width:100%;font:inherit;padding:11px 12px;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:0}
+input:focus,textarea:focus{outline:1px solid var(--red);border-color:var(--red)}
+textarea{min-height:80px;resize:vertical}
+input[type=file]{width:100%;color:var(--mute);font:inherit;font-size:12px}
+input[type=file]::file-selector-button{background:var(--ink);color:var(--bg);border:0;padding:9px 14px;margin-right:12px;font:inherit;cursor:pointer}
+.opts{display:flex;flex-wrap:wrap;gap:8px}.opts label{flex:1 1 auto}
+.opts input{position:absolute;opacity:0;pointer-events:none}
+.opts span{display:block;text-align:center;padding:10px 12px;border:1px solid var(--line);cursor:pointer;background:var(--bg)}
+.opts input:checked+span{background:var(--red);border-color:var(--red);color:#fff}
+.opts input:focus-visible+span{outline:2px solid var(--ink);outline-offset:2px}
+.notice{border:1px solid var(--red);padding:14px 16px;margin-bottom:14px;font-size:13px;background:#1a1010}
+.notice ul{margin:6px 0 0;padding-left:18px;color:#c9c5bd}
+.thumbs{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.thumbs div{position:relative;width:92px;height:92px}
+.thumbs img{width:100%;height:100%;object-fit:cover;border:1px solid var(--line)}
+.thumbs button{position:absolute;top:-7px;right:-7px;width:24px;height:24px;border-radius:50%;border:0;background:var(--red);color:#fff;cursor:pointer}
+.err{color:#ff6b6b;font-size:12px;margin-top:6px;display:none}.err.on{display:block}
+pre{white-space:pre-wrap;background:var(--bg);border:1px solid var(--line);padding:12px;font:12px/1.5 var(--mono);overflow-x:auto;margin:0 0 6px}
+.chk{display:flex;gap:10px;align-items:flex-start}.chk input{margin-top:4px;accent-color:var(--red)}
+.foot{margin-top:40px;font-size:10px;letter-spacing:.25em;color:#555;text-transform:uppercase}
+</style>
+</head>
+<body>
+<main>
+
+<!-- LANDING -->
+<section id="landing">
+<div class="top"><div class="brand">Shoot With Zell<i>.</i></div><div class="meta">Shoot Request<br>Tulsa, OK<br>2026</div></div>
+<p class="kick">Photo sessions · Start here</p>
+<h1>Let's<br>Shoot.</h1>
+<p class="lede">Tell me what you're picturing. I'll plan the rest.</p>
+
+<ol class="steps">
+<li><b>01</b><div><strong>You answer.</strong> Time of day, who's coming, location, outfits. Two minutes, tops.</div></li>
+<li><b>02</b><div><strong>You send inspo.</strong> 1 to 3 photos of the vibe or look you want to recreate.</div></li>
+<li><b>03</b><div><strong>I plan.</strong> I review everything and get back to you with a plan and pricing.</div></li>
+</ol>
+
+<div class="grid">
+<div><small>Takes</small><span>2 Min</span></div>
+<div><small>Based in</small><span>Tulsa</span></div>
+<div><small>Inspo</small><span>1-3 Pics</span></div>
+</div>
+<div class="dash"><b>Add-ons = <em>Extra</em></b>Beyond City Limits · Multiple Outfits · Extra People · Multiple Locations</div>
+
+<button class="btn" id="go">Proceed →</button>
+<div class="foot">Shoot request · 01</div>
+</section>
+
+<!-- FORM -->
+<section id="formView" class="hide">
+<button class="back" id="back">← Back</button>
+<p class="kick">01 — The details</p>
+<h2>Tell Me the Vibe</h2>
+<p class="lede" style="margin-bottom:22px">Answer what you can. I'll fill in the rest.</p>
+
+<div class="notice"><strong>Pricing note:</strong> additional charges apply for add-ons or anything that takes extra work:
+<ul><li>Driving beyond city limits</li><li>Multiple outfits</li><li>Additional people joining the shoot</li><li>Multiple locations</li></ul></div>
+
+<form id="f" novalidate>
+<div class="card"><label class="q" for="name">Your name <span class="req">*</span></label>
+<input type="text" id="name" autocomplete="name"><div class="err" id="e-name">Please enter your name.</div></div>
+
+<div class="card"><label class="q" for="contact">Best phone or email <span class="req">*</span></label>
+<input type="text" id="contact" autocomplete="email"><div class="err" id="e-contact">Please enter a way to reach you.</div></div>
+
+<div class="card"><div class="q">Daytime or night time? <span class="req">*</span></div>
+<div class="opts">
+<label><input type="radio" name="time" value="Daytime"><span>Daytime</span></label>
+<label><input type="radio" name="time" value="Night time"><span>Night time</span></label>
+<label><input type="radio" name="time" value="Golden hour / sunset"><span>Golden hour</span></label>
+<label><input type="radio" name="time" value="Not sure, open to suggestions"><span>Not sure</span></label></div>
+<div class="err" id="e-time">Pick one.</div></div>
+
+<div class="card"><div class="q">Solo or group shoot? <span class="req">*</span></div>
+<div class="opts">
+<label><input type="radio" name="group" value="Solo"><span>Solo</span></label>
+<label><input type="radio" name="group" value="Multiple people"><span>Multiple people</span></label></div>
+<div id="groupWrap" class="hide" style="margin-top:10px"><label class="q" for="groupN">How many people total?</label>
+<input type="number" id="groupN" min="2" max="30" inputmode="numeric"></div>
+<div class="err" id="e-group">Pick one.</div></div>
+
+<div class="card"><div class="q">Location <span class="req">*</span></div>
+<div class="opts">
+<label><input type="radio" name="loc" value="I have a location in mind"><span>I have one</span></label>
+<label><input type="radio" name="loc" value="I'd like you to pick a location"><span>You pick</span></label>
+<label><input type="radio" name="loc" value="I have multiple locations in mind"><span>Multiple</span></label></div>
+<div id="locWrap" class="hide" style="margin-top:10px"><label class="q" for="locD">Where? <span class="hint">(name, address or area)</span></label>
+<textarea id="locD"></textarea></div>
+<div class="err" id="e-loc">Pick one.</div></div>
+
+<div class="card"><div class="q">How many outfits will you change into? <span class="req">*</span></div>
+<div class="opts">
+<label><input type="radio" name="outfits" value="1 (no changes)"><span>1</span></label>
+<label><input type="radio" name="outfits" value="2"><span>2</span></label>
+<label><input type="radio" name="outfits" value="3"><span>3</span></label>
+<label><input type="radio" name="outfits" value="4 or more"><span>4+</span></label>
+<label><input type="radio" name="outfits" value="Not sure yet"><span>Not sure</span></label></div>
+<div class="err" id="e-outfits">Pick one.</div></div>
+
+<div class="card"><div class="q">Inspiration photos <span class="req">*</span> <span class="hint">Add 1 to 3 images of the vibe, location or style you want</span></div>
+<input type="file" id="files" accept="image/*" multiple>
+<div class="thumbs" id="thumbs"></div>
+<div class="err" id="e-files">Please add at least 1 inspiration photo (max 3).</div></div>
+
+<div class="card"><label class="q" for="notes">Anything else? <span class="hint">(preferred dates, occasion, Instagram handle)</span></label>
+<textarea id="notes"></textarea></div>
+
+<div class="card chk"><input type="checkbox" id="ack"><label for="ack">I understand additional charges apply for travel beyond city limits, multiple outfits, extra people and multiple locations. <span class="req">*</span></label></div>
+<div class="err" id="e-ack" style="margin:-6px 0 12px">Please confirm to continue.</div>
+
+<button type="submit" class="btn">Review &amp; Send</button>
+</form>
+
+<section id="out" class="hide card" style="margin-top:22px">
+<div class="q">Almost done. Send this to me:</div>
+<pre id="msg"></pre>
+<button class="btn" id="share">Send With My Photos</button>
+<a class="btn alt" id="sms" href="#">Text It</a>
+<a class="btn alt" id="mail" href="#">Email It</a>
+<button class="btn alt" id="copy">Copy Message</button>
+<p class="hint" id="note"></p>
+</section>
+<div class="foot">Shoot request · 02</div>
+</section>
+</main>
+<script>
+var PHONE="9188525680", EMAIL="fm.mamah@gmail.com";
+var $=function(id){return document.getElementById(id)};
+var files=[];
+function show(form){$("landing").classList.toggle("hide",form);$("formView").classList.toggle("hide",!form);window.scrollTo(0,0)}
+$("go").onclick=function(){show(true)};
+$("back").onclick=function(){show(false)};
+function val(n){var r=document.querySelector('input[name="'+n+'"]:checked');return r?r.value:""}
+document.querySelectorAll('input[name="group"]').forEach(function(r){r.onchange=function(){$("groupWrap").classList.toggle("hide",val("group")!=="Multiple people")}});
+document.querySelectorAll('input[name="loc"]').forEach(function(r){r.onchange=function(){$("locWrap").classList.toggle("hide",val("loc")==="I'd like you to pick a location")}});
+$("files").onchange=function(e){files=files.concat(Array.prototype.slice.call(e.target.files)).slice(0,3);e.target.value="";draw()};
+function draw(){
+  var t=$("thumbs");t.innerHTML="";
+  files.forEach(function(f,i){
+    var d=document.createElement("div"),im=document.createElement("img"),b=document.createElement("button");
+    im.src=URL.createObjectURL(f);im.alt="Inspiration "+(i+1);b.type="button";b.textContent="x";b.setAttribute("aria-label","Remove");
+    b.onclick=function(){files.splice(i,1);draw()};
+    d.appendChild(im);d.appendChild(b);t.appendChild(d);
+  });
+}
+function bad(id,on){$("e-"+id).classList.toggle("on",on);return on}
+function build(){
+  var g=val("group")==="Multiple people"?"Multiple people ("+($("groupN").value||"?")+" total)":"Solo";
+  var l=val("loc");if(l!=="I'd like you to pick a location"&&$("locD").value.trim())l+=": "+$("locD").value.trim();
+  var s="PHOTOSHOOT REQUEST\nName: "+$("name").value.trim()+"\nContact: "+$("contact").value.trim()+
+  "\nTime of day: "+val("time")+"\nShoot type: "+g+"\nLocation: "+l+"\nOutfits: "+val("outfits")+
+  "\nInspo photos: "+files.length+" attached";
+  if($("notes").value.trim())s+="\nNotes: "+$("notes").value.trim();
+  return s+"\nAcknowledged additional charges: Yes";
+}
+$("f").onsubmit=function(e){
+  e.preventDefault();
+  var errs=[bad("name",!$("name").value.trim()),bad("contact",!$("contact").value.trim()),bad("time",!val("time")),
+  bad("group",!val("group")),bad("loc",!val("loc")),bad("outfits",!val("outfits")),bad("files",files.length<1),bad("ack",!$("ack").checked)];
+  if(errs.some(Boolean)){var f=document.querySelector(".err.on");f&&f.scrollIntoView({block:"center"});return}
+  var m=build();$("msg").textContent=m;$("out").classList.remove("hide");
+  $("sms").href="sms:"+PHONE+"?&body="+encodeURIComponent(m);
+  $("mail").href="mailto:"+EMAIL+"?subject="+encodeURIComponent("Photoshoot request: "+$("name").value.trim())+"&body="+encodeURIComponent(m);
+  $("note").textContent="Texting or emailing? Remember to attach your 1 to 3 inspiration photos to the message.";
+  $("out").scrollIntoView({behavior:"smooth"});
+};
+$("share").onclick=async function(){
+  var m=build();
+  try{if(navigator.canShare&&navigator.canShare({files:files})){await navigator.share({text:m,files:files});return}}
+  catch(err){if(err&&err.name==="AbortError")return}
+  $("note").textContent="Sharing with photos isn't supported here. Use Text or Email and attach your photos.";
+};
+$("copy").onclick=async function(){
+  try{await navigator.clipboard.writeText(build());$("note").textContent="Copied. Paste it in a message and attach your photos."}
+  catch(err){$("note").textContent="Couldn't copy. Select the text above and copy it manually."}
+};
+</script>
+</body>
+</html>
