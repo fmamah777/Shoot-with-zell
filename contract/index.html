@@ -318,6 +318,19 @@ html{background:#0b0707}
       }
     };
   });
+
+  // Provider (Shinafi Digital Services) is pre-signed, so the client only signs the second line.
+  var PROVIDER_SIGNATURE='Zell';
+  var PROVIDER_SIGNED_ON='November 11, 2026';
+  (function(){
+    var root=$$('.sig')[0], t=$('.typed',root), d=$('.date',root);
+    $$('.tab',root)[1].click();
+    $$('.tabs',root).forEach(function(x){x.hidden=true});
+    t.value=PROVIDER_SIGNATURE; t.readOnly=true;
+    t.dispatchEvent(new Event('input'));
+    d.textContent=PROVIDER_SIGNED_ON;
+    $('.pname',root).readOnly=true;
+  })();
   refresh();
 
   function buildDoc(){
