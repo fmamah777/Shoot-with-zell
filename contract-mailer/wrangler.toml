@@ -6,7 +6,7 @@ compatibility_date = "2025-01-01"
 # The exact origin of the GitHub Pages site (no trailing slash, no path).
 ALLOWED_ORIGIN = "https://fmamah777.github.io"
 # The contract page this Worker reads the agreement text from.
-CONTRACT_URL = "https://fmamah777.github.io/shoot-with-zell/contract/"
+CONTRACT_URL = "https://fmamah777.github.io/Shoot-with-zell/contract/"
 OWNER_EMAIL = "fm.mamah@gmail.com"
 # While testing, use Resend's test sender. It can only deliver to the email on your Resend account.
 FROM_EMAIL = "Shinafi Digital Services <onboarding@resend.dev>"
