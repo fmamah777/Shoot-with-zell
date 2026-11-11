@@ -10,5 +10,5 @@ CONTRACT_URL = "https://fmamah777.github.io/Shoot-with-zell/contract/"
 OWNER_EMAIL = "fm.mamah@gmail.com"
 # While testing, use Resend's test sender. It can only deliver to the email on your Resend account.
 FROM_EMAIL = "Shinafi Digital Services <onboarding@resend.dev>"
-# Keep "false" until the owner should receive copies AND you have a verified sending domain.
-SEND_CLIENT_COPY = "false"
+# "true" emails the client a copy. It needs a verified sending domain in FROM_EMAIL; with the resend.dev test sender the client copy fails and the copy goes to OWNER_EMAIL instead.
+SEND_CLIENT_COPY = "true"
