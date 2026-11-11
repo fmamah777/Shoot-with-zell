@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Social Media Services Agreement</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Grenze+Gotisch:wght@500;700;800&family=Cormorant+Garamond:ital,wght@1,500;1,600&family=IBM+Plex+Mono:wght@400;500;600&family=Caveat:wght@600&display=swap">
+<style>
+/* Layout: cover sheet, then two stacked "pages" (terms, then responsibilities + signatures). Dark red cinematic, blackletter headings, serif italic accents, mono body. */
+:root{
+  --bg:#0b0707; --sheet:#120a0a; --ink:#eadfd5; --muted:#a3928a; --red:#d0161d; --red-dim:#7d1015; --line:#3b1b1d; --field:#1a0f0f;
+  --display:"Grenze Gotisch","UnifrakturCook",Georgia,serif;
+  --serif:"Cormorant Garamond",Georgia,serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  --script:"Caveat","Brush Script MT",cursive;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{
+  background:var(--bg); color:var(--ink); font:12.5px/1.55 var(--mono);
+  padding-block:24px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));
+  padding-right:max(16px,env(safe-area-inset-right,0px));
+  background-image:radial-gradient(ellipse 70% 40% at 50% 0%,rgba(208,22,29,.14),transparent 70%);
+  background-repeat:no-repeat;
+}
+body::after{
+  content:""; position:fixed; inset:0; pointer-events:none; opacity:.09; mix-blend-mode:screen;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+.sheet{max-width:780px;margin:0 auto 22px;background:var(--sheet);border:1px solid var(--line);padding:30px 32px;position:relative}
+.sheet-foot{display:flex;justify-content:space-between;gap:12px;margin-top:22px;padding-top:10px;border-top:1px solid var(--line);color:var(--muted);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase}
+
+/* Cover */
+.cover{min-height:560px;display:flex;flex-direction:column;justify-content:space-between;gap:36px;border-color:var(--red-dim);box-shadow:inset 0 0 0 6px var(--sheet),inset 0 0 0 7px var(--line)}
+.kicker{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--red)}
+.cover h1{font:800 clamp(40px,9vw,72px)/.98 var(--display);margin:14px 0 18px;text-wrap:balance;letter-spacing:.01em}
+.cover h1 em{font-style:normal;color:var(--red)}
+.tagline{font:italic 600 clamp(19px,3.4vw,25px)/1.3 var(--serif);color:var(--muted);max-width:30ch;margin:0}
+.rule{height:1px;background:linear-gradient(90deg,var(--red),transparent);border:0;margin:0}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px 24px}
+.facts dt{font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.facts dd{margin:3px 0 0;font-size:14px;font-weight:500;min-width:0;overflow-wrap:anywhere}
+.ph{color:var(--muted);font-style:italic}
+.go{align-self:flex-start;background:var(--red);color:#fff;border:0;padding:12px 22px;font:600 12px var(--mono);letter-spacing:.14em;text-transform:uppercase;cursor:pointer}
+.go:hover{background:#e51f26}
+
+/* Contract */
+.head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;border-bottom:1px solid var(--red-dim);padding-bottom:10px;margin-bottom:6px}
+.head h2{font:700 30px/1 var(--display);margin:0}
+.head span{font:italic 600 17px var(--serif);color:var(--muted)}
+.cl{margin-top:14px}
+.cl h3{font:700 20px/1.1 var(--display);margin:0 0 4px;display:flex;gap:10px;align-items:baseline}
+.cl h3 b{font:600 11px var(--mono);color:var(--red);letter-spacing:.1em}
+.cl p{margin:3px 0}
+.cl strong{font-weight:600;color:#fff}
+.items{margin:4px 0 0;padding:0;list-style:none;display:grid;gap:5px}
+.items li{padding-left:22px;position:relative}
+.items li b{position:absolute;left:0;color:var(--red);font-weight:600}
+.fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px 18px;margin-top:6px}
+.fields label,.sig label{display:grid;gap:2px;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);min-width:0}
+input[type=text],input[type=date],input[type=number]{
+  background:var(--field);color:var(--ink);border:0;border-bottom:1px dashed var(--red-dim);padding:5px 6px;font:500 12.5px var(--mono);min-width:0;width:100%;border-radius:0
+}
+input:focus-visible,button:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+input.mini{width:4ch;text-align:center;display:inline-block;padding:1px 2px}
+::placeholder{color:#6f5f58}
+
+/* Signatures */
+.signs{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-top:10px}
+.sig{border:1px solid var(--line);padding:12px;display:grid;gap:8px;min-width:0}
+.sig h4{margin:0;font:700 18px var(--display)}
+.sigpad{border:1px solid var(--line);background:var(--field);padding:6px}
+.tabs{display:flex;gap:6px;margin-bottom:6px;flex-wrap:wrap}
+.tab,.clear{background:transparent;color:var(--muted);border:1px solid var(--line);padding:3px 9px;font:500 10.5px var(--mono);letter-spacing:.1em;text-transform:uppercase;cursor:pointer}
+.tab.on{color:#fff;border-color:var(--red);background:var(--red-dim)}
+.clear{margin-left:auto}
+canvas{display:block;width:100%;height:auto;aspect-ratio:640/140;touch-action:none;cursor:crosshair;border-bottom:1px solid var(--red-dim)}
+input.typed{font:600 34px/1.2 var(--script);border-bottom:1px solid var(--red-dim);background:transparent;text-align:center}
+.date{color:#fff;font-weight:500}
+.sig:not(.signed) .date{color:var(--muted);font-style:italic;font-weight:400}
+.consent{display:flex;gap:10px;align-items:flex-start;margin-top:12px;font-size:12px}
+.consent input{margin-top:3px;accent-color:var(--red);flex:none}
+.savebar{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-top:12px}
+.go:disabled{background:#3a1416;color:#8a7a72;cursor:not-allowed}
+#msg{color:var(--muted);font-size:11.5px;min-width:0}
+.eonly{display:none}
+@media (max-width:480px){.sheet{padding:22px 18px}}
+@media (prefers-reduced-motion:no-preference){.go{transition:background .15s}}
+html{background:#0b0707}
+.testbar{max-width:780px;margin:0 auto 14px;border:1px dashed var(--red-dim);color:var(--muted);padding:8px 12px;font-size:11.5px;letter-spacing:.04em}
+.testbar b{color:var(--red);letter-spacing:.14em;text-transform:uppercase;margin-right:8px}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.savebar .go+.go{background:transparent;border:1px solid var(--red-dim);color:var(--ink)}
+.savebar .go+.go:hover{background:var(--red-dim)}
+.savebar .go:disabled{background:#3a1416;color:#8a7a72;border-color:#3a1416}
+</style>
+</head>
+<body>
+
+<main>
+<div class="testbar" id="testbar" hidden><b>Test version</b>Nothing is sent to the dealership. Signed copies go only to Shinafi Digital Services.</div>
+<div class="hp" aria-hidden="true"><label>Website<input type="text" id="website" tabindex="-1" autocomplete="off"></label></div>
+<section class="sheet cover" aria-label="Cover">
+  <div>
+    <div class="kicker">Services Agreement &middot; Tulsa, Oklahoma</div>
+    <h1>Social Media <em>&amp;</em> Digital Services</h1>
+    <p class="tagline">Photography, Facebook, Instagram, customer relationship management and website inventory, handled in one place.</p>
+  </div>
+  <div style="display:grid;gap:22px">
+    <hr class="rule">
+    <dl class="facts" style="margin:0">
+      <div><dt>Prepared for</dt><dd id="coverClient" class="ph">Dealership name</dd></div>
+      <div><dt>Prepared by</dt><dd>Shinafi Digital Services</dd></div>
+      <div><dt>Term</dt><dd>Effective date through March 31, 2027</dd></div>
+      <div><dt>Monthly fee</dt><dd>$600 per month</dd></div>
+    </dl>
+    <button type="button" class="go" id="goBtn">Review and sign</button>
+  </div>
+</section>
+
+<!--AGREEMENT-START-->
+<div id="agreement">
+<section class="sheet" aria-label="Agreement page 1">
+  <div class="head"><h2>Services Agreement</h2><span>Page 1 of 2</span></div>
+
+  <div class="cl">
+    <h3><b>1</b>Parties</h3>
+    <p>This agreement is between <strong>Shinafi Digital Services</strong> ("Provider"), phone 918-852-5680, email fm.mamah@gmail.com, and the dealership named below ("Client").</p>
+    <div class="fields">
+      <label>Dealership name<input type="text" id="clientName" data-field="clientName" value="Safe Ride Auto Sales LLC" placeholder="Business name" autocomplete="organization"></label>
+      <label>Authorized contact<input type="text" id="clientContact" data-field="clientContact" value="P.O. Vahabzadegan, Owner" placeholder="Owner or manager name" autocomplete="name"></label>
+      <label>Phone<input type="text" id="clientReach" data-field="clientReach" value="(918) 600-5344" placeholder="Dealership phone" autocomplete="tel"></label>
+      <label>Email for signed copy<input type="text" id="clientEmail" data-field="clientEmail" inputmode="email" autocomplete="email" placeholder="name@business.com"></label>
+      <label>Address<input type="text" id="clientAddr" data-field="clientAddr" value="7920 East 11th Street, Tulsa, OK 74112" placeholder="Street, Tulsa, OK" autocomplete="street-address"></label>
+      <label>Effective date<input type="date" id="effDate" data-field="effDate"></label>
+    </div>
+  </div>
+
+  <div class="cl">
+    <h3><b>2</b>Term and fee</h3>
+    <p>This agreement runs from the effective date through <strong>March 31, 2027</strong>. Client pays <strong>$600 per month</strong> for each month of that term. The fee covers everything in Section 3. Paid ad budgets for Facebook or Instagram are not included and go directly from Client to the platform. The agreement ends on March 31, 2027 unless both parties renew in writing, and rates may change at renewal.</p>
+  </div>
+
+  <div class="cl">
+    <h3><b>3</b>Scope of services</h3>
+    <ul class="items">
+      <li><b>A</b><span><strong>Photography.</strong> Provider photographs vehicles and the lot as inventory is received and sold. Client tells Provider about new arrivals and sales, and sessions are scheduled around that activity. Photos are edited and delivered after each session for use on social media and the website.</span></li>
+      <li><b>B</b><span><strong>Facebook.</strong> Provider manages Client's Facebook Page: posting about <input class="mini" type="number" id="cadence" data-field="cadence" value="3" min="1" max="21" aria-label="Posts per week"> times per week, keeping business info current, and posting inventory, offers and events Client approves.</span></li>
+      <li><b>C</b><span><strong>Instagram.</strong> Provider creates an Instagram account in Client's name, sets up the profile and branding, and posts on the same schedule as Facebook. Client owns the account.</span></li>
+      <li><b>D</b><span><strong>Customer relationship management.</strong> Provider monitors and replies to messages and comments that arrive through Facebook, Instagram and other connected social channels, Monday to Saturday, within one hour during business hours. Provider then directs customers to the dealership owner, P.O. Vahabzadegan, through his Facebook or phone number, where he discusses specifics with them. All messages, leads and appointment requests are forwarded to him directly. Provider does not quote prices, financing or trade-in values, or make sales commitments, unless Client has supplied approved answers.</span></li>
+      <li><b>E</b><span><strong>Website inventory and SEO.</strong> Provider adds Client's current inventory, estimated at 35 or more vehicles, to Client's website, entering each one individually: year, make, model, trim, VIN, mileage, price, features, photos and a written description. Provider also writes SEO page titles, meta descriptions and image alt text for each listing. Each vehicle added after the initial upload costs $75, billed with the next monthly invoice.</span></li>
+    </ul>
+  </div>
+  <div class="sheet-foot"><span>Social Media &amp; Digital Services Agreement</span><span>Page 1 of 2</span></div>
+</section>
+
+<section class="sheet" aria-label="Agreement page 2">
+  <div class="head"><h2>Terms</h2><span>Page 2 of 2</span></div>
+
+  <div class="cl">
+    <h3><b>4</b>Client responsibilities</h3>
+    <p>Client will give Provider admin or editor access to the Facebook Page, Meta Business Suite, Instagram account and website inventory tools within 3 days of signing. Client will supply accurate vehicle details, pricing and legal disclosures, give access to the lot and vehicles for photo sessions, review content within 2 business days, and report price or availability changes promptly. Client is responsible for the accuracy and legal compliance of its prices, offers and advertising claims. Provider posts what Client supplies and approves.</p>
+  </div>
+
+  <div class="cl">
+    <h3><b>5</b>Ownership and content</h3>
+    <p>All social accounts and website listings belong to Client. Provider keeps the copyright in photos it takes and gives Client a permanent license to use them for its business. Provider may show the work in a portfolio unless Client objects in writing. Client confirms it has the right to any logos, text and images it provides.</p>
+  </div>
+
+  <div class="cl">
+    <h3><b>6</b>Payment</h3>
+    <p>Payment is due on the 1st of each month by invoice or electronic payment. The first payment is due when this agreement is signed. If a payment is more than 5 days late, Provider may pause services until it is paid. Balances more than 10 days past due carry a 5% late fee.</p>
+  </div>
+
+  <div class="cl">
+    <h3><b>7</b>Ending early</h3>
+    <p>Either party may end this agreement with 30 days' written notice. Text or email counts as written notice. Client pays for all work through the end of the notice period, and fees for a month already started are not refunded. Once fees are paid, Provider hands over all account access, content and files.</p>
+  </div>
+
+  <div class="cl">
+    <h3><b>8</b>Results and liability</h3>
+    <p>Provider will work professionally and in good faith but cannot guarantee sales, leads, followers, reach, search rankings or reviews, because these depend on the platforms and the market. Platform changes, suspensions or outages outside Provider's control are not a breach. Provider's total liability is limited to the fees paid for the month in which a claim arises, and neither party is liable for lost profits or indirect damages.</p>
+  </div>
+
+  <div class="cl">
+    <h3><b>9</b>Confidentiality and data use</h3>
+    <p>Provider uses Client's logins, customer information, messages and business data only to perform these services. Provider will not sell, share or pass this information to other providers or third parties, except as needed to use the platforms Client's accounts run on. Provider will not use it to solicit Client's customers or business for anyone else, and will not use it for any malicious purpose, including unauthorized access, hacking, identity theft or any other way of stealing information. Provider keeps account credentials secure, uses them only for Client's accounts, and returns or deletes them when this agreement ends. Client likewise keeps Provider's business details confidential.</p>
+  </div>
+
+  <div class="cl">
+    <h3><b>10</b>General</h3>
+    <p>Provider is an independent contractor and not an employee. Changes must be in writing. This is the full agreement between the parties. It is governed by Oklahoma law, and disputes are handled in Tulsa County. If any part is unenforceable, the rest stays in effect.</p>
+  </div>
+
+  <div class="cl">
+    <h3><b>11</b>Signatures</h3>
+    <!--NOEXPORT--><p class="noexport consent"><span style="display:flex;gap:10px;align-items:flex-start"><input type="checkbox" id="consent"><label for="consent">I agree to sign electronically. A drawn or typed signature here has the same effect as a handwritten one.</label></span></p><!--/NOEXPORT-->
+    <p class="eonly">Both parties agreed to sign electronically. Drawn or typed signatures here have the same effect as handwritten ones.</p>
+    <div class="signs">
+      <div class="sig" data-who="Provider">
+        <h4>Provider</h4>
+        <label>Printed name<input type="text" class="pname" data-field="providerName" value="Shinafi Digital Services"></label>
+        <div class="sigpad" data-sig="provider">
+          <div class="tabs noexport"><button type="button" class="tab on" data-m="draw">Draw</button><button type="button" class="tab" data-m="type">Type</button><button type="button" class="clear">Clear</button></div>
+          <canvas width="640" height="140" aria-label="Provider signature, draw here"></canvas>
+          <input type="text" class="typed" hidden placeholder="Type full name" aria-label="Provider typed signature">
+        </div><!--/sigpad-->
+        <div>Signed: <span class="date" data-date="provider">Not yet signed</span></div>
+      </div>
+      <div class="sig" data-who="Client">
+        <h4>Client</h4>
+        <label>Printed name and title<input type="text" class="pname" data-field="clientSigner" value="P.O. Vahabzadegan, Owner" placeholder="Name, title"></label>
+        <div class="sigpad" data-sig="client">
+          <div class="tabs noexport"><button type="button" class="tab on" data-m="draw">Draw</button><button type="button" class="tab" data-m="type">Type</button><button type="button" class="clear">Clear</button></div>
+          <canvas width="640" height="140" aria-label="Client signature, draw here"></canvas>
+          <input type="text" class="typed" hidden placeholder="Type full name" aria-label="Client typed signature">
+        </div><!--/sigpad-->
+        <div>Signed: <span class="date" data-date="client">Not yet signed</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="sheet-foot"><span>Social Media &amp; Digital Services Agreement</span><span>Page 2 of 2</span></div>
+</section>
+</div>
+<!--AGREEMENT-END-->
+
+<section class="savebar" style="max-width:780px;margin:0 auto">
+  <button type="button" class="go" id="sendBtn" disabled hidden>Sign and send copy</button>
+  <button type="button" class="go" id="saveBtn" disabled>Save a copy to this device</button>
+  <span id="msg" role="status">Add an email, check the box and sign both lines to continue.</span>
+</section>
+</main>
+
+<script>
+(function(){
+  // Set after the Worker is deployed, e.g. 'https://shinafi-contract-mailer.YOURNAME.workers.dev'
+  var WORKER_URL='';
+  // While true, the page says nothing goes to the dealership. The Worker enforces this separately (SEND_CLIENT_COPY).
+  var TEST_MODE=true;
+  var INK='#eadfd5';
+  var OWNER_NOTE='Shinafi Digital Services';
+
+  function $(s,r){return (r||document).querySelector(s)}
+  function $$(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))}
+  function esc(t){return String(t).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+  function fmt(d){return d.toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'})}
+  function iso(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
+
+  if(TEST_MODE) $('#testbar').hidden=false;
+  $('#effDate').value=iso(new Date());
+  var clientName=$('#clientName'), coverClient=$('#coverClient');
+  function syncCover(){var v=clientName.value.trim();coverClient.textContent=v||'Dealership name';coverClient.classList.toggle('ph',!v)}
+  clientName.addEventListener('input',syncCover); syncCover();
+  $('#goBtn').addEventListener('click',function(){$('#agreement').scrollIntoView({behavior:'smooth',block:'start'})});
+
+  var consent=$('#consent'), sendBtn=$('#sendBtn'), saveBtn=$('#saveBtn'), msg=$('#msg'), sigs=[], busy=false;
+  function emailOk(){return /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test($('#clientEmail').value.trim())}
+  function ready(){return consent.checked&&emailOk()&&sigs.every(function(s){return s.has()})}
+  function refresh(){
+    var ok=ready();
+    sendBtn.hidden=!WORKER_URL;
+    sendBtn.disabled=!ok||busy;
+    saveBtn.disabled=!ok||busy;
+    if(busy) return;
+    if(!ok) msg.textContent='Add an email, check the box and sign both lines to continue.';
+    else if(WORKER_URL) msg.textContent=TEST_MODE?'Ready. In test mode the signed copy goes only to '+OWNER_NOTE+'.':'Ready. A signed copy will be emailed to you and to '+OWNER_NOTE+'.';
+    else msg.textContent='Ready. Email sending is not connected yet, so save a copy to this device.';
+  }
+  consent.addEventListener('change',refresh);
+  $('#clientEmail').addEventListener('input',refresh);
+
+  sigs=$$('.sig').map(function(root){
+    var canvas=$('canvas',root), ctx=canvas.getContext('2d'), typed=$('.typed',root), dateEl=$('.date',root);
+    var mode='draw', strokes=[], cur=null;
+    function render(color,c,w,h){
+      c=c||ctx; w=w||canvas.width; h=h||canvas.height;
+      c.clearRect(0,0,w,h); c.lineWidth=3; c.lineCap='round'; c.lineJoin='round'; c.strokeStyle=color; c.fillStyle=color;
+      strokes.forEach(function(s){
+        if(s.length===1){c.beginPath();c.arc(s[0][0],s[0][1],1.6,0,6.3);c.fill();return}
+        c.beginPath(); s.forEach(function(p,i){i?c.lineTo(p[0],p[1]):c.moveTo(p[0],p[1])}); c.stroke();
+      });
+    }
+    function pt(e){var r=canvas.getBoundingClientRect();return [(e.clientX-r.left)*canvas.width/r.width,(e.clientY-r.top)*canvas.height/r.height]}
+    function has(){return mode==='draw'?strokes.length>0:typed.value.trim().length>1}
+    function update(){
+      var h=has();
+      dateEl.textContent=h?fmt(new Date()):'Not yet signed';
+      root.classList.toggle('signed',h);
+      refresh();
+    }
+    function darkPng(){
+      var o=document.createElement('canvas');o.width=canvas.width;o.height=canvas.height;
+      render('#111',o.getContext('2d'),o.width,o.height); render(INK);
+      return o.toDataURL('image/png');
+    }
+    canvas.addEventListener('pointerdown',function(e){e.preventDefault();try{canvas.setPointerCapture(e.pointerId)}catch(x){}cur=[pt(e)];strokes.push(cur);render(INK)});
+    canvas.addEventListener('pointermove',function(e){if(!cur)return;cur.push(pt(e));render(INK)});
+    function end(){if(cur){cur=null;update()}}
+    canvas.addEventListener('pointerup',end); canvas.addEventListener('pointercancel',end);
+    typed.addEventListener('input',update);
+    $$('.tab',root).forEach(function(b){b.addEventListener('click',function(){
+      mode=b.getAttribute('data-m');
+      $$('.tab',root).forEach(function(x){x.classList.toggle('on',x===b)});
+      canvas.hidden=mode!=='draw'; typed.hidden=mode!=='type';
+      update();
+    })});
+    $('.clear',root).addEventListener('click',function(){strokes=[];typed.value='';render(INK);update()});
+    return {
+      has:has,
+      date:function(){return dateEl.textContent},
+      payload:function(){return mode==='draw'?{type:'draw',png:darkPng()}:{type:'type',text:typed.value.trim()}},
+      html:function(){
+        if(mode==='draw') return '<img class="sigimg" src="'+darkPng()+'" alt="Signature">';
+        return '<span class="sigtype">'+esc(typed.value)+'</span>';
+      }
+    };
+  });
+  refresh();
+
+  function buildDoc(){
+    var sel='#agreement input[type=text],#agreement input[type=date],#agreement input[type=number]';
+    var orig=$$(sel), clone=$('#agreement').cloneNode(true), cl=$$(sel.replace(/#agreement /g,''),clone);
+    cl.forEach(function(inp,i){
+      var o=orig[i], s=document.createElement('span'); s.className='val';
+      var v=o.value; if(o.type==='date'&&v){v=fmt(new Date(v+'T00:00:00'))}
+      s.textContent=v||'________'; inp.replaceWith(s);
+    });
+    $$('.sig',clone).forEach(function(c,i){$('.sigpad',c).innerHTML=sigs[i].html()});
+    $$('.noexport',clone).forEach(function(n){n.remove()});
+    var css='body{font:13px/1.6 "IBM Plex Mono",Menlo,Consolas,monospace;color:#111;max-width:780px;margin:24px auto;padding:0 18px}'+
+      '.sheet{padding:18px 0 28px;border-bottom:2px solid #c4161c;margin-bottom:24px}h2,h3,h4{font-family:"Grenze Gotisch",Georgia,serif;margin:.8em 0 .25em}'+
+      'h2{font-size:30px}h3{font-size:20px}h3 b{font:600 11px monospace;color:#c4161c;margin-right:8px}.head span{font-style:italic;color:#666;margin-left:10px}'+
+      '.val{border-bottom:1px solid #999;padding:0 4px;font-weight:600}.fields{display:grid;gap:6px 18px;grid-template-columns:1fr 1fr}.fields label{display:block;font-size:10px;text-transform:uppercase;color:#666}'+
+      '.items{list-style:none;padding:0}.items li{margin:6px 0}.items li b{color:#c4161c;margin-right:8px}.signs{display:grid;grid-template-columns:1fr 1fr;gap:20px}'+
+      '.sig{border:1px solid #bbb;padding:12px}.sig label{display:block;font-size:10px;text-transform:uppercase;color:#666}.sigimg{height:70px;display:block}'+
+      '.sigtype{font:34px "Caveat",cursive}.sheet-foot{display:flex;justify-content:space-between;font-size:10px;color:#777;margin-top:16px}.eonly{display:block}';
+    return '<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Signed Services Agreement</title>'+
+      '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Grenze+Gotisch:wght@700&family=IBM+Plex+Mono:wght@400;600&family=Caveat:wght@600&display=swap">'+
+      '<style>'+css+'</style></head><body>'+clone.outerHTML+'</body></html>';
+  }
+  function download(name,html){
+    var b=new Blob([html],{type:'text/html'}), a=document.createElement('a');
+    a.href=URL.createObjectURL(b); a.download=name; document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function(){URL.revokeObjectURL(a.href)},4000);
+  }
+  function slug(){return (clientName.value.trim()||'Client').replace(/[^A-Za-z0-9]+/g,'-').replace(/^-|-$/g,'')||'Client'}
+
+  saveBtn.addEventListener('click',function(){
+    if(!ready())return;
+    download('Services-Agreement-'+slug()+'-Signed.html',buildDoc());
+    msg.textContent='Saved to this device.';
+  });
+
+  sendBtn.addEventListener('click',function(){
+    if(!ready()||!WORKER_URL||busy)return;
+    busy=true; refresh(); msg.textContent='Sending...';
+    var body={
+      website:$('#website').value,
+      consent:true,
+      clientName:clientName.value.trim(),
+      clientContact:$('#clientContact').value.trim(),
+      clientReach:$('#clientReach').value.trim(),
+      clientEmail:$('#clientEmail').value.trim(),
+      clientAddr:$('#clientAddr').value.trim(),
+      effDate:$('#effDate').value,
+      cadence:$('#cadence').value,
+      providerName:$$('.pname')[0].value.trim(),
+      clientSigner:$$('.pname')[1].value.trim(),
+      providerSig:sigs[0].payload(), providerSignedAt:sigs[0].date(),
+      clientSig:sigs[1].payload(), clientSignedAt:sigs[1].date()
+    };
+    fetch(WORKER_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)})
+      .then(function(r){return r.json().then(function(j){return {ok:r.ok,j:j}})})
+      .then(function(x){
+        busy=false;
+        if(x.ok&&x.j&&x.j.ok){
+          msg.textContent=x.j.clientCopy?'Signed. A copy was emailed to you and to '+OWNER_NOTE+'.':(TEST_MODE?'Signed. Test mode: the copy went only to '+OWNER_NOTE+'.':'Signed. The copy went to '+OWNER_NOTE+'. Your own copy could not be delivered, so save one to this device.');
+          sendBtn.disabled=true; saveBtn.disabled=false;
+        } else {
+          refresh(); msg.textContent=(x.j&&x.j.error)?x.j.error:'Could not send. Save a copy to this device and send it by text or email.';
+        }
+      })
+      .catch(function(){busy=false;refresh();msg.textContent='Could not reach the email service. Save a copy to this device and send it by text or email.'});
+  });
+})();
+</script>
+</body>
+</html>
