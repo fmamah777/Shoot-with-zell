@@ -235,6 +235,13 @@ html{background:#0b0707}
   <button type="button" class="go" id="saveBtn" disabled>Save a copy to this device</button>
   <span id="msg" role="status">Add an email, check the box and sign both lines to continue.</span>
 </section>
+<section class="sheet" id="thanks" hidden aria-live="polite" style="margin-top:22px">
+  <div class="head"><h2>Signed. Thank you.</h2><span>What happens next</span></div>
+  <div class="cl">
+    <p>Your signed agreement has been sent to Shinafi Digital Services. You will receive an email with the contract details at <strong id="thanksEmail"></strong> shortly.</p>
+    <p>If it has not arrived within a day, check your spam folder or call Shinafi Digital Services at 918-852-5680.</p>
+  </div>
+</section>
 </main>
 
 <script>
@@ -395,6 +402,7 @@ html{background:#0b0707}
         if(x.ok&&x.j&&x.j.ok){
           msg.textContent=x.j.clientCopy?'Signed. A copy was emailed to you and to '+OWNER_NOTE+'.':(TEST_MODE?'Signed. Test mode: the copy went only to '+OWNER_NOTE+'.':'Signed. The copy went to '+OWNER_NOTE+'. Your own copy could not be delivered, so save one to this device.');
           sendBtn.disabled=true; saveBtn.disabled=false;
+          $('#thanksEmail').textContent=$('#clientEmail').value.trim(); var th=$('#thanks'); th.hidden=false; th.scrollIntoView({behavior:'smooth',block:'start'});
         } else {
           refresh(); msg.textContent=(x.j&&x.j.error)?x.j.error:'Could not send. Save a copy to this device and send it by text or email.';
         }
